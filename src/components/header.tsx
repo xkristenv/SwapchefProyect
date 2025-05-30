@@ -1,17 +1,9 @@
-//clase para definir el header y todos sus elementos
-import React from "react";
+const Header = () => (
+  <div className="bg-[#FEBA17] w-full">
+    <h1 className="text-center py-3 text-brown-800 text-2xl" style={{ fontFamily: "'Berkshire Swash', cursive" }}>
+      Swapchef
+    </h1>
+  </div>
+);
 
-interface HeaderProps {
-  title: string;
-  style: string;
-}
-
-//style="font-family: 'Berkshire Swash', cursive;"
-
-export default function Header(props: HeaderProps) {
-  return (
-    <h1 className="text-center py-3 text-brown-800 text-2xl" >
-        {props.title}
-      </h1>
-  );
-}
+export default Header;
