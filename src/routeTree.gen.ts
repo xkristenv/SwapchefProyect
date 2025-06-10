@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as RegisterImport } from './routes/register'
 import { Route as ProfileImport } from './routes/profile'
+import { Route as PostForumImport } from './routes/postForum'
 import { Route as PasswordImport } from './routes/password'
 import { Route as LoginImport } from './routes/login'
 import { Route as ForumImport } from './routes/forum'
@@ -31,6 +32,12 @@ const RegisterRoute = RegisterImport.update({
 const ProfileRoute = ProfileImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PostForumRoute = PostForumImport.update({
+  id: '/postForum',
+  path: '/postForum',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -116,6 +123,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PasswordImport
       parentRoute: typeof rootRoute
     }
+    '/postForum': {
+      id: '/postForum'
+      path: '/postForum'
+      fullPath: '/postForum'
+      preLoaderRoute: typeof PostForumImport
+      parentRoute: typeof rootRoute
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -142,6 +156,7 @@ export interface FileRoutesByFullPath {
   '/forum': typeof ForumRoute
   '/login': typeof LoginRoute
   '/password': typeof PasswordRoute
+  '/postForum': typeof PostForumRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -153,6 +168,7 @@ export interface FileRoutesByTo {
   '/forum': typeof ForumRoute
   '/login': typeof LoginRoute
   '/password': typeof PasswordRoute
+  '/postForum': typeof PostForumRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -165,6 +181,7 @@ export interface FileRoutesById {
   '/forum': typeof ForumRoute
   '/login': typeof LoginRoute
   '/password': typeof PasswordRoute
+  '/postForum': typeof PostForumRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -178,6 +195,7 @@ export interface FileRouteTypes {
     | '/forum'
     | '/login'
     | '/password'
+    | '/postForum'
     | '/profile'
     | '/register'
   fileRoutesByTo: FileRoutesByTo
@@ -188,6 +206,7 @@ export interface FileRouteTypes {
     | '/forum'
     | '/login'
     | '/password'
+    | '/postForum'
     | '/profile'
     | '/register'
   id:
@@ -198,6 +217,7 @@ export interface FileRouteTypes {
     | '/forum'
     | '/login'
     | '/password'
+    | '/postForum'
     | '/profile'
     | '/register'
   fileRoutesById: FileRoutesById
@@ -210,6 +230,7 @@ export interface RootRouteChildren {
   ForumRoute: typeof ForumRoute
   LoginRoute: typeof LoginRoute
   PasswordRoute: typeof PasswordRoute
+  PostForumRoute: typeof PostForumRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
 }
@@ -221,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   ForumRoute: ForumRoute,
   LoginRoute: LoginRoute,
   PasswordRoute: PasswordRoute,
+  PostForumRoute: PostForumRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
 }
@@ -241,6 +263,7 @@ export const routeTree = rootRoute
         "/forum",
         "/login",
         "/password",
+        "/postForum",
         "/profile",
         "/register"
       ]
@@ -262,6 +285,9 @@ export const routeTree = rootRoute
     },
     "/password": {
       "filePath": "password.tsx"
+    },
+    "/postForum": {
+      "filePath": "postForum.tsx"
     },
     "/profile": {
       "filePath": "profile.tsx"
