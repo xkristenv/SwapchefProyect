@@ -15,6 +15,8 @@ interface recipeCardProps {
   name: string;
   autor: string;
   button?: React.ReactNode;
+  ingredients: string[];
+  steps: string[];
 }
 
 interface ContainerProps {

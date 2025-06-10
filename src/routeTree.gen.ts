@@ -13,8 +13,11 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as RegisterImport } from './routes/register'
 import { Route as ProfileImport } from './routes/profile'
+import { Route as PasswordImport } from './routes/password'
+import { Route as LoginImport } from './routes/login'
 import { Route as ForumImport } from './routes/forum'
 import { Route as FavoritesImport } from './routes/favorites'
+import { Route as DeleteImport } from './routes/delete'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -31,6 +34,18 @@ const ProfileRoute = ProfileImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const PasswordRoute = PasswordImport.update({
+  id: '/password',
+  path: '/password',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LoginRoute = LoginImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ForumRoute = ForumImport.update({
   id: '/forum',
   path: '/forum',
@@ -40,6 +55,12 @@ const ForumRoute = ForumImport.update({
 const FavoritesRoute = FavoritesImport.update({
   id: '/favorites',
   path: '/favorites',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DeleteRoute = DeleteImport.update({
+  id: '/delete',
+  path: '/delete',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/delete': {
+      id: '/delete'
+      path: '/delete'
+      fullPath: '/delete'
+      preLoaderRoute: typeof DeleteImport
+      parentRoute: typeof rootRoute
+    }
     '/favorites': {
       id: '/favorites'
       path: '/favorites'
@@ -72,6 +100,20 @@ declare module '@tanstack/react-router' {
       path: '/forum'
       fullPath: '/forum'
       preLoaderRoute: typeof ForumImport
+      parentRoute: typeof rootRoute
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/password': {
+      id: '/password'
+      path: '/password'
+      fullPath: '/password'
+      preLoaderRoute: typeof PasswordImport
       parentRoute: typeof rootRoute
     }
     '/profile': {
@@ -95,16 +137,22 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/delete': typeof DeleteRoute
   '/favorites': typeof FavoritesRoute
   '/forum': typeof ForumRoute
+  '/login': typeof LoginRoute
+  '/password': typeof PasswordRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/delete': typeof DeleteRoute
   '/favorites': typeof FavoritesRoute
   '/forum': typeof ForumRoute
+  '/login': typeof LoginRoute
+  '/password': typeof PasswordRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
@@ -112,33 +160,67 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/delete': typeof DeleteRoute
   '/favorites': typeof FavoritesRoute
   '/forum': typeof ForumRoute
+  '/login': typeof LoginRoute
+  '/password': typeof PasswordRoute
   '/profile': typeof ProfileRoute
   '/register': typeof RegisterRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/favorites' | '/forum' | '/profile' | '/register'
+  fullPaths:
+    | '/'
+    | '/delete'
+    | '/favorites'
+    | '/forum'
+    | '/login'
+    | '/password'
+    | '/profile'
+    | '/register'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/favorites' | '/forum' | '/profile' | '/register'
-  id: '__root__' | '/' | '/favorites' | '/forum' | '/profile' | '/register'
+  to:
+    | '/'
+    | '/delete'
+    | '/favorites'
+    | '/forum'
+    | '/login'
+    | '/password'
+    | '/profile'
+    | '/register'
+  id:
+    | '__root__'
+    | '/'
+    | '/delete'
+    | '/favorites'
+    | '/forum'
+    | '/login'
+    | '/password'
+    | '/profile'
+    | '/register'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DeleteRoute: typeof DeleteRoute
   FavoritesRoute: typeof FavoritesRoute
   ForumRoute: typeof ForumRoute
+  LoginRoute: typeof LoginRoute
+  PasswordRoute: typeof PasswordRoute
   ProfileRoute: typeof ProfileRoute
   RegisterRoute: typeof RegisterRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DeleteRoute: DeleteRoute,
   FavoritesRoute: FavoritesRoute,
   ForumRoute: ForumRoute,
+  LoginRoute: LoginRoute,
+  PasswordRoute: PasswordRoute,
   ProfileRoute: ProfileRoute,
   RegisterRoute: RegisterRoute,
 }
@@ -154,8 +236,11 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/delete",
         "/favorites",
         "/forum",
+        "/login",
+        "/password",
         "/profile",
         "/register"
       ]
@@ -163,11 +248,20 @@ export const routeTree = rootRoute
     "/": {
       "filePath": "index.tsx"
     },
+    "/delete": {
+      "filePath": "delete.tsx"
+    },
     "/favorites": {
       "filePath": "favorites.tsx"
     },
     "/forum": {
       "filePath": "forum.tsx"
+    },
+    "/login": {
+      "filePath": "login.tsx"
+    },
+    "/password": {
+      "filePath": "password.tsx"
     },
     "/profile": {
       "filePath": "profile.tsx"

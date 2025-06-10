@@ -10,7 +10,7 @@ function RootComponent() {
   const currentPath = location.pathname
 
   // Puedes ocultar el footer en rutas específicas:
-  const hideFooter = ['/register', '/login'].includes(currentPath)
+  const hideFooter = ['/register', '/login', '/password', '/delete'].includes(currentPath)
 
 
   return (

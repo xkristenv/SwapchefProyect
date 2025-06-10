@@ -1,23 +1,27 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import Login from '../components/pages/login'
 import Header from '../components/ui/Header'
-import Forum from '../components/pages/forum'
 import Footer from '../components/ui/footer'
 
+import pandaImg from '../assets/Panda rojo.svg';
+
 const headerProps = {
-  title:  'Swapchef'
+  img: pandaImg
 }
 
-export const Route = createFileRoute('/forum')({
+export const Route = createFileRoute('/login')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return (<div className="flex flex-col min-h-screen">
+  return (
+      <div className="flex flex-col min-h-screen">
         <div className="flex-grow">
           <Header {...headerProps} />
-          <Forum />
+          <Login />
         </div>
         <Footer />
-      </div>);
+      </div>
+    );
 }
