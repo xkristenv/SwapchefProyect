@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import Delete from '../components/pages/DeleteAccount'
+import Delete from '../components/pages/signOut'
 import Header from '../components/ui/Header'
 import Footer from '../components/ui/footer'
 

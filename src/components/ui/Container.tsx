@@ -55,7 +55,7 @@ export default function Container(props: ContainerProps) {
 
        <SearchBar value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
         
-      <div className="gap-4 px-4">
+      <div className="gap-4 px-4 pb-12">
         {filteredRecipes.map((r, i) => (
           <Card key={i} {...r} />
         ))}

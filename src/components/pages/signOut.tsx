@@ -20,16 +20,16 @@ export default function DeleteAccount() {
   };
 
   return (
-    <div className="w-full md:w-1/2 bg-zinc-800/50 p-8 rounded-2xl backdrop-blur-sm text-center">
-      <h2 className="text-2xl font-semibold text-[#7e7e7e] mb-6">Borrar la cuenta</h2>
+    <div className="w-full md:w-1/2 bg-zinc-800/50 p-10 rounded-2xl text-center">
+      <h2 className="text-2xl font-semibold text-[#7e7e7e] mb-6">Salir de la cuenta</h2>
 
       <p className="text-[15px] font-semibold text-[#4E1F00] mb-10">
-        ¿Estás segura de querer borrar tu cuenta actual?
+        ¿Estás segura de querer salir de tu cuenta?
       </p>
 
       <div className="space-y-4">
         <Button
-          text="Borrar cuenta"
+          text="Salir"
           style="w-full h-[39px] bg-[#FEBA17] text-[#4E1F00] font-semibold text-[17px] rounded-full"
           //onClick={handleDelete}
         />
