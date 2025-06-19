@@ -11,8 +11,11 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as VerifyAccountImport } from './routes/verifyAccount'
 import { Route as RegisterImport } from './routes/register'
+import { Route as ProfileGuestImport } from './routes/profileGuest'
 import { Route as ProfileImport } from './routes/profile'
+import { Route as PostRecipeImport } from './routes/postRecipe'
 import { Route as PostForumImport } from './routes/postForum'
 import { Route as PasswordImport } from './routes/password'
 import { Route as LoginImport } from './routes/login'
@@ -23,15 +26,33 @@ import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
+const VerifyAccountRoute = VerifyAccountImport.update({
+  id: '/verifyAccount',
+  path: '/verifyAccount',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const RegisterRoute = RegisterImport.update({
   id: '/register',
   path: '/register',
   getParentRoute: () => rootRoute,
 } as any)
 
+const ProfileGuestRoute = ProfileGuestImport.update({
+  id: '/profileGuest',
+  path: '/profileGuest',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ProfileRoute = ProfileImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PostRecipeRoute = PostRecipeImport.update({
+  id: '/postRecipe',
+  path: '/postRecipe',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -130,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostForumImport
       parentRoute: typeof rootRoute
     }
+    '/postRecipe': {
+      id: '/postRecipe'
+      path: '/postRecipe'
+      fullPath: '/postRecipe'
+      preLoaderRoute: typeof PostRecipeImport
+      parentRoute: typeof rootRoute
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -137,11 +165,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileImport
       parentRoute: typeof rootRoute
     }
+    '/profileGuest': {
+      id: '/profileGuest'
+      path: '/profileGuest'
+      fullPath: '/profileGuest'
+      preLoaderRoute: typeof ProfileGuestImport
+      parentRoute: typeof rootRoute
+    }
     '/register': {
       id: '/register'
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterImport
+      parentRoute: typeof rootRoute
+    }
+    '/verifyAccount': {
+      id: '/verifyAccount'
+      path: '/verifyAccount'
+      fullPath: '/verifyAccount'
+      preLoaderRoute: typeof VerifyAccountImport
       parentRoute: typeof rootRoute
     }
   }
@@ -157,8 +199,11 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/password': typeof PasswordRoute
   '/postForum': typeof PostForumRoute
+  '/postRecipe': typeof PostRecipeRoute
   '/profile': typeof ProfileRoute
+  '/profileGuest': typeof ProfileGuestRoute
   '/register': typeof RegisterRoute
+  '/verifyAccount': typeof VerifyAccountRoute
 }
 
 export interface FileRoutesByTo {
@@ -169,8 +214,11 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/password': typeof PasswordRoute
   '/postForum': typeof PostForumRoute
+  '/postRecipe': typeof PostRecipeRoute
   '/profile': typeof ProfileRoute
+  '/profileGuest': typeof ProfileGuestRoute
   '/register': typeof RegisterRoute
+  '/verifyAccount': typeof VerifyAccountRoute
 }
 
 export interface FileRoutesById {
@@ -182,8 +230,11 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/password': typeof PasswordRoute
   '/postForum': typeof PostForumRoute
+  '/postRecipe': typeof PostRecipeRoute
   '/profile': typeof ProfileRoute
+  '/profileGuest': typeof ProfileGuestRoute
   '/register': typeof RegisterRoute
+  '/verifyAccount': typeof VerifyAccountRoute
 }
 
 export interface FileRouteTypes {
@@ -196,8 +247,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/password'
     | '/postForum'
+    | '/postRecipe'
     | '/profile'
+    | '/profileGuest'
     | '/register'
+    | '/verifyAccount'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -207,8 +261,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/password'
     | '/postForum'
+    | '/postRecipe'
     | '/profile'
+    | '/profileGuest'
     | '/register'
+    | '/verifyAccount'
   id:
     | '__root__'
     | '/'
@@ -218,8 +275,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/password'
     | '/postForum'
+    | '/postRecipe'
     | '/profile'
+    | '/profileGuest'
     | '/register'
+    | '/verifyAccount'
   fileRoutesById: FileRoutesById
 }
 
@@ -231,8 +291,11 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PasswordRoute: typeof PasswordRoute
   PostForumRoute: typeof PostForumRoute
+  PostRecipeRoute: typeof PostRecipeRoute
   ProfileRoute: typeof ProfileRoute
+  ProfileGuestRoute: typeof ProfileGuestRoute
   RegisterRoute: typeof RegisterRoute
+  VerifyAccountRoute: typeof VerifyAccountRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -243,8 +306,11 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PasswordRoute: PasswordRoute,
   PostForumRoute: PostForumRoute,
+  PostRecipeRoute: PostRecipeRoute,
   ProfileRoute: ProfileRoute,
+  ProfileGuestRoute: ProfileGuestRoute,
   RegisterRoute: RegisterRoute,
+  VerifyAccountRoute: VerifyAccountRoute,
 }
 
 export const routeTree = rootRoute
@@ -264,8 +330,11 @@ export const routeTree = rootRoute
         "/login",
         "/password",
         "/postForum",
+        "/postRecipe",
         "/profile",
-        "/register"
+        "/profileGuest",
+        "/register",
+        "/verifyAccount"
       ]
     },
     "/": {
@@ -289,11 +358,20 @@ export const routeTree = rootRoute
     "/postForum": {
       "filePath": "postForum.tsx"
     },
+    "/postRecipe": {
+      "filePath": "postRecipe.tsx"
+    },
     "/profile": {
       "filePath": "profile.tsx"
     },
+    "/profileGuest": {
+      "filePath": "profileGuest.tsx"
+    },
     "/register": {
       "filePath": "register.tsx"
+    },
+    "/verifyAccount": {
+      "filePath": "verifyAccount.tsx"
     }
   }
 }

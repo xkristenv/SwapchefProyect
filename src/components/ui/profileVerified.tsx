@@ -1,10 +1,23 @@
 import React from "react";
+import Button from "../ui/Button";
+import { useNavigate } from "@tanstack/react-router";
 
 interface ProfileVerifiedProps {
   icon: string;
 }
 
 export default function ProfileVerified({ icon }: ProfileVerifiedProps) {
+const navigate = useNavigate();
+
+  const handleUploadClick = () => {
+    navigate({ to: "/postRecipe" }); // Cambia '/upload' por la ruta que uses
+  };
+
+  const handleForumClick = () => {
+    navigate({ to: "/forum" });
+  };
+
+
   return (
     <div>
       
@@ -18,7 +31,10 @@ export default function ProfileVerified({ icon }: ProfileVerifiedProps) {
         <h2 className="text-2xl font-bold mt-2">Kristen.V</h2>
         <p className="text-sm text-gray-600 mb-4">Kristen@gmail.com</p>
 
-        <div className="mt-4 flex flex-col items-center mb-4">
+        <div
+          onClick={handleForumClick}
+          className="mt-4 flex flex-col items-center mb-4 cursor-pointer"
+        >
           <img src={icon} alt="Icono Foros" className="w-12 h-12 mb-1" />
           <span className="text-sm font-medium">Foros</span>
         </div>
@@ -50,7 +66,11 @@ export default function ProfileVerified({ icon }: ProfileVerifiedProps) {
         </div>
 
         <div className="flex justify-end pt-4">
-          <button className="bg-[#3b1902af] text-white rounded-full w-12 h-12 flex items-center justify-center text-3xl">+</button>
+        <Button
+                  text="+"
+                  style="bg-[#3b1902af] text-white rounded-full w-12 h-12 flex items-center justify-center text-3xl"
+                  onClick={handleUploadClick}
+                />
         </div>
       </section>
     </div>

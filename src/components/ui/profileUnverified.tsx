@@ -1,12 +1,22 @@
 import React from "react";
 import Button from "../ui/Button";
+import { useNavigate } from "@tanstack/react-router";
 
 interface ProfileUnverifiedProps {
   icon: string;
-  onStartVerification: () => void;
 }
 
-export default function ProfileUnverified({ icon, onStartVerification }: ProfileUnverifiedProps) {
+export default function ProfileUnverified({ icon }: ProfileUnverifiedProps) {
+  const navigate = useNavigate();
+
+  const handleUploadClick = () => {
+    navigate({ to: "/verifyAccount" }); // ← ruta de verificación
+  };
+
+  const handleForumClick = () => {
+    navigate({ to: "/forum" });
+  };
+
   return (
     <div>
       <section className="flex-grow flex flex-col items-center py-6 px-4">
@@ -19,7 +29,10 @@ export default function ProfileUnverified({ icon, onStartVerification }: Profile
         <h2 className="text-2xl font-bold mt-2">Kristen.V</h2>
         <p className="text-sm text-gray-600 mb-4">Kristen@gmail.com</p>
 
-        <div className="mt-4 flex flex-col items-center mb-4">
+        <div
+          onClick={handleForumClick}
+          className="mt-4 flex flex-col items-center mb-4 cursor-pointer"
+        >
           <img src={icon} alt="Icono Foros" className="w-12 h-12 mb-1" />
           <span className="text-sm font-medium">Foros</span>
         </div>
@@ -31,7 +44,7 @@ export default function ProfileUnverified({ icon, onStartVerification }: Profile
         <Button
           text="Verificar Cuenta"
           style="w-full h-[40px] bg-[#FEBA17] text-[#4E1F00] font-semibold text-[17px] rounded-full"
-          //onClick={onStartVerification}
+          onClick={handleUploadClick}
         />
       </div>
     </div>

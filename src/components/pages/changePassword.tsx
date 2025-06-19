@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../ui/Button";
+import { useNavigate } from "@tanstack/react-router";
 
 interface ChangePasswordFormData {
   newPassword: string;
@@ -7,6 +8,8 @@ interface ChangePasswordFormData {
 }
 
 export default function ChangePasswordForm() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState<ChangePasswordFormData>({
     newPassword: "",
     confirmPassword: "",
@@ -17,23 +20,23 @@ export default function ChangePasswordForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handlePasswordChange = () => {
     if (formData.newPassword !== formData.confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
     }
 
     console.log("Nueva contraseña:", formData.newPassword);
-    // Aquí puedes hacer un fetch al backend
+    // Aquí puedes hacer un fetch/post al backend
+
+    navigate({ to: "/profile" });
   };
 
   return (
     <div className="w-full md:w-1/2 bg-zinc-800/50 p-8 rounded-2xl backdrop-blur-sm">
       <h2 className="text-2xl font-semibold text-gray-700 mb-4">Recuperar contraseña</h2>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form className="space-y-6">
         <div className="relative">
           <label className="block text-sm text-[#4E1F00] mb-1">Nueva contraseña</label>
           <input
@@ -62,7 +65,8 @@ export default function ChangePasswordForm() {
 
         <Button
           text="Cambiar contraseña"
-          style="w-full bg-[#FEBA17] text-[#4E1F00] py-2 rounded-full font-semibold mt-2 cursor-pointer"
+          style="w-full bg-[#FEBA17] text-[#4E1F00] py-2 rounded-full font-semibold mt-2 cursor-pointer hover:bg-[#4E1F00] hover:text-[#FEBA17]"
+          onClick={handlePasswordChange}
         />
       </form>
     </div>
